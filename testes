@@ -1,0 +1,44 @@
+import unittest
+from grafo_matriz_adjacencia import GrafoMatrizAdjacencia
+
+class TestGrafoMatrizAdjacencia(unittest.TestCase):
+    def test_adicionar_aresta(self):
+        grafo = GrafoMatrizAdjacencia(5)
+        grafo.adicionar_aresta(0, 1)
+        self.assertEqual(grafo.matriz_adjacencia, [[0, 1, 0, 0, 0],
+                                                   [0, 0, 0, 0, 0],
+                                                   [0, 0, 0, 0, 0],
+                                                   [0, 0, 0, 0, 0],
+                                                   [0, 0, 0, 0, 0]])
+
+    def test_bfs(self):
+        grafo = GrafoMatrizAdjacencia(5)
+        grafo.adicionar_aresta(0, 1)
+        grafo.adicionar_aresta(0, 2)
+        grafo.adicionar_aresta(1, 3)
+        grafo.adicionar_aresta(2, 4)
+        self.assertEqual(grafo.bfs(0, 4), "Caminho entre os vértices:\n0 -> 2 -> 4")
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+from grafo_lista_adjacencia import GrafoListaAdjacencia
+
+class TestGrafoListaAdjacencia(unittest.TestCase):
+    def test_adicionar_aresta(self):
+        grafo = GrafoListaAdjacencia(5)
+        grafo.adicionar_aresta(0, 1)
+        self.assertEqual(grafo.lista_adjacencia, {0: [1], 1: [], 2: [], 3: [], 4: []})
+
+    def test_bfs(self):
+        grafo = GrafoListaAdjacencia(5)
+        grafo.adicionar_aresta(0, 1)
+        grafo.adicionar_aresta(0, 2)
+        grafo.adicionar_aresta(1, 3)
+        grafo.adicionar_aresta(2, 4)
+        self.assertEqual(grafo.bfs(0, 4), "Caminho entre os vértices:\n0 -> 2 -> 4")
+
+if __name__ == '__main__':
+    unittest.main()
+
